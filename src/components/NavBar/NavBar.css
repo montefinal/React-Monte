@@ -1,21 +1,37 @@
 
             
-nav a{
-    text-decoration:none;
-    color:inherit;
-    font-size:14px;
-    } 
-    nav li{
-    display:inline-block;
-    width:10%;
-    padding:100px 100px;
-    background-color:red;
-    border:1px solid #000;
-    text-align:center;
-    color:#fff;
-    }
-    nav li:hover{
-    background-color:#fff;
-    color:#000;
-    }
-   
+.nav-menu{ 
+    width: 100%;
+    margin: 0;  
+    background-color: #E18E07;
+    top: 0;
+    margin-bottom: 45px;
+  }
+  
+  .nav-list{  
+    height: 90px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  ul{
+    list-style: none;
+  }
+  
+  a{
+    text-decoration: none;
+    font-weight:400;
+    font-size: 1.15em;
+    color:rgb(59, 59, 50)
+  }
+  
+  
+  a:hover{
+    font-weight: 600;
+    color:rgb(19, 19, 17)
+  }
+  
+  .nav-menu:hover .card-favicon{
+    display: block;
+  }

@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
-import NavBar from './components/NavBar/NavBar';
+import React from "react";
+import "./App.css";
+import ItemDetailContainer from "./components/ItemDetail/ItemDetailContainer";
+import ItemListContainer from "./components/ItemList/ItemListContainer";
+import NavBar from "./components/NavBar/NavBar";
 
-//Importamos Componentes
-import MyButton from './components/MyButton/MyButton';
-import ItemListContainer from './components/ItemList/ItemListContainer';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <>
     <div className="App">
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<ItemListContainer />} />
 
-      <header className="App-header">
+          <Route path="/category/:idCategory" element={<ItemListContainer />} />
 
-        <NavBar/>
+          <Route path="/detail/:idItem" element={<ItemDetailContainer />} />
 
-        <ItemListContainer greeting="PRODUCTOS MAGIC THE GATHERING"/>
-
-      </header>
+          <Route path="*" element={<h1>Error 404: Está página no existe</h1>} />
+          
+        </Routes>
+      </BrowserRouter>
     </div>
-    </>
   );
 }
 

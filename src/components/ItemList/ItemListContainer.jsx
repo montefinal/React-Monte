@@ -1,24 +1,41 @@
-import React from 'react'
-import Item from './Item'
+import { useState, useEffect } from "react";
 
-function ItemListContainer(props) {
+import Item from "./Item";
+import "./itemlist.css";
+import getItems from "../../Services/mockService";
+
+import { useParams } from "react-router-dom";
+
+function ItemListContainer() {
+  const [products, setProducts] = useState([]);
+  const { idCategory } = useParams();
+
+  async function getItemsAsync() {
+    let respuesta = await getItems(idCategory);
+    setProducts(respuesta);
+  }
+
+  useEffect(() => {
+    getItemsAsync();
+  }, [idCategory]);
+
   return (
-    <div>
-        <h1>{props.greeting}</h1>
-        
-        <Item
-          imgurl="https://images.ctfassets.net/s5n2t79q9icq/3jY3utIFxSyBAbHSVWf2xn/386e373a22ef12623b30b4f86b2c5f0e/PJCNG48G7g_en.png?fm=webp"
-          title="Mazo"
-          price={100}
+    <div className="item-list">
+      {products.map((product) => {
+        return (
+          <Item
+            key={product.id}
+            id={product.id}
+            imgurl={product.imgurl}
+            title={product.title}
+            price={product.price}
+            category={product.category}
+            color="#E18E07"
           />
-
-        <Item
-          imgurl="https://images.ctfassets.net/s5n2t79q9icq/5bPF5O6tV1lSkxUc4xPHXj/df059a81afc495b7e3261bad1975d202/qDxXlO7Jkl_en.png?fm=webp"
-          title="Caja"
-          price={200}
-        />
+        );
+      })}
     </div>
   );
 }
 
-export default ItemListContainer
+export default ItemListContainer;
